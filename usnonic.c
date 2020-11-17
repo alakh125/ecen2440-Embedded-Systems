@@ -1,4 +1,4 @@
-//Code Leveraged off by Chandra Kiran Saladi
+//Code Leveraged off of Chandra Kiran Saladi
 #include "msp.h"
 #include <stdint.h>
 
