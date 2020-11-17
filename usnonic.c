@@ -1,3 +1,4 @@
+//Code Leveraged off by Chandra Kiran Saladi
 #include "msp.h"
 #include <stdint.h>
 
@@ -32,13 +33,11 @@ int main(void)
     // Configure UART pins
      P1->SEL0 |= BIT2 | BIT3;                // set 2-UART pin as secondary function
 
-
+//OUR CODE
     P2->DIR &= ~BIT7;
     P2->REN |= BIT7;
     P2->OUT &= ~BIT7;
-
-
-
+//OUR CODE
     P2->IFG = 0;
     P2->IE |= BIT7;
     P2->IES &= ~BIT7;
@@ -69,7 +68,7 @@ int main(void)
                                                     // considered
     NVIC->ISER[0] = 1 << ((TA0_0_IRQn) & 31);
 
-
+//OUR CODE
     while(1){
         P2->DIR |= BIT6;
         P2->OUT |= BIT6;
@@ -80,7 +79,7 @@ int main(void)
         Delay(1000000);
         distance = sensor/78;
 
-
+//OUR CODE
         char buffer[50];
         sprintf(buffer,"The distance is %d millimeters\n",distance);
         uart_puts(buffer);
