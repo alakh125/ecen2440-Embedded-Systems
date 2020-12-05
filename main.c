@@ -10,12 +10,12 @@
  */
 
 #include "msp.h"
-#include "i2c.h"
-#include "stIMU.h"
 #include "stdio.h"
 
 #include "button.h"
 #include "leds.h"
+#include "buzzer.h"
+#include "pwmTIMER.h"
 
 /**
  * main.c
@@ -29,7 +29,13 @@ void main(void)
     WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
     //disable interrupts
     __disable_irq();
+
+   stop_pwmA0();
+   config_pwm_timerA0(); 
+   start_pwmA0();
+
    config_LEDs();
+   config_speaker();
    config_button();
    config_button2();
    config_nvic_button();
@@ -37,29 +43,8 @@ void main(void)
     //enable interrupts
     __enable_irq();
 
-/*
-    I2C_OPEN_STRUCT_TypeDef i2c_open_struct;
-
-    i2c_open_struct.uca10 = 0;                              //no self 10-bit Address
-    i2c_open_struct.ucsla10 = 0;                            //no 10-bit Addressing
-    i2c_open_struct.ucmm = 0;                               //No Multi-Controller
-    i2c_open_struct.ucmst = EUSCI_B_CTLW0_MST;              //Controller Mode
-    i2c_open_struct.ucsselx = EUSCI_B_CTLW0_SSEL__SMCLK;    //SMCLK to be selected (3MHz)
-    i2c_open_struct.ucbrx = 30;                             //Prescaler for Selected Clock.
-                                                            //(100kHz)
-
-     //This sets up the I2C driver to operate with the correct settings.
-     //EUSCI_B0 uses P1.7 as SCL and P1.6 as SDA
-     i2c_open(EUSCI_B0, &i2c_open_struct);
-
-     config_LIS3MDL();
-
-     uint16_t mx, my, mz;
-     uint8_t data;
-     int i;
-*/
     while(1) {
-      //Neutral Position
+
       while(state == 0 && state2 == 0)
       {
         printf("currently powered on and in autonomous mode \n");
@@ -80,7 +65,7 @@ void main(void)
 void PORT1_IRQHandler(void)
 {
     volatile uint32_t j;
-    if(P1->IFG &BIT1 /*&& P1->IFG ~&BIT4*/){
+    if(P1->IFG &BIT1){
       printf("state = %d",state);
     //Check flag
       if(state == 1) {
@@ -89,7 +74,6 @@ void PORT1_IRQHandler(void)
       else {
         state = 1;
       }
-      // Delay for switch debounce, can use __no_operation() instead if you want!
       for(j = 0; j < 100000; j++) {
       }
       P1->IFG &= ~BIT1;
@@ -103,12 +87,10 @@ void PORT1_IRQHandler(void)
       else {
         state2 = 1;
       }
-      // Delay for switch debounce, can use __no_operation() instead if you want!
       for(j = 0; j < 100000; j++) {
       }
       P1->IFG &= ~BIT4;
     }
  
-      //end of interrupt, what needs to happen here?
 }
 
