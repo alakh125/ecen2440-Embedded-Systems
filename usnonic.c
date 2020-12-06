@@ -38,7 +38,7 @@ int main(void)
      P1->SEL0 |= BIT2 | BIT3;                // set 2-UART pin as secondary function
 
     //OUR CODE
-    P2->DIR &= ~BIT7;
+    P2->DIR &= ~BIT7;                   //Set Port 2 pin 7 as output
     P2->REN |= BIT7;
     P2->OUT &= ~BIT7;
     //OUR CODE
