@@ -45,6 +45,7 @@ int main(void)
     P2->IE |= BIT7;
     P2->IES &= ~BIT7;
     //UART SETUP
+    EUSCI_A0->CTLW0 |= EUSCI_A_CTLW0_SWRST;
     EUSCI_A0->CTLW0 = EUSCI_A_CTLW0_SWRST |
     EUSCI_B_CTLW0_SSEL__SMCLK;      // Configure eUSCI clock source for SMCLK
     // Baud Rate calculation
@@ -67,24 +68,24 @@ int main(void)
     TIMER_A0->CTL = TIMER_A_CTL_TASSEL_2 | TIMER_A_CTL_MC__UP | TIMER_A_CTL_CLR;
 
     __enable_irq();
-    NVIC->ISER[1] = 1 << ((PORT2_IRQn) & 31);       // Very important to assign interrupts to the NVIC vector otherwise they would not
-                                                    // considered
+    NVIC->ISER[1] = 1 << ((PORT2_IRQn) & 31);       // Assign interrupts to the NVIC vector 
     NVIC->ISER[0] = 1 << ((TA0_0_IRQn) & 31);
 
 //OUR CODE
     while(1){
         P2->DIR |= BIT6;
         P2->OUT |= BIT6;
-        Delay(1000);
+        Delay(100);//This delay is for the 10us trigger.
         P2->OUT &= ~BIT6;
         P2->IFG = 0;
         P2->IES &= ~BIT7;
-        Delay(1000000);
-        distance = sensor/78;
+        Delay(30000);
+        distance = sensor/58;
 
 //OUR CODE
         char buffer[50];
-        sprintf(buffer,"The distance is %d millimeters\n",distance);
+        //printf(buffer, "Distance is %d \n", distance); This would print to the console
+        sprintf(buffer,"The distance is %d millimeters\n",distance); //Using a serial communication port to display the values.
         uart_puts(buffer);
      }
 
