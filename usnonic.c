@@ -41,6 +41,8 @@ int main(void)
     P2->REN |= BIT7;
     P2->OUT &= ~BIT7;
     //OUR CODE
+    
+    //CHANDRA'S CODE
     P2->IFG = 0;
     P2->IE |= BIT7;
     P2->IES &= ~BIT7;
@@ -70,6 +72,7 @@ int main(void)
     __enable_irq();
     NVIC->ISER[1] = 1 << ((PORT2_IRQn) & 31);       // Assign interrupts to the NVIC vector 
     NVIC->ISER[0] = 1 << ((TA0_0_IRQn) & 31);
+    //CHANDRA'S CODE
 
 //OUR CODE
     while(1){
@@ -91,7 +94,7 @@ int main(void)
 
 }
 
-
+//CHANDRA'S CODE
 int uart_puts(const char *str)
 {
     int status = -1;
@@ -151,3 +154,4 @@ void TA0_0_IRQHandler(void)
     miliseconds++;
     TIMER_A0->CCTL[0] &= ~TIMER_A_CCTLN_CCIFG;
 }
+//CHANDRA'S CODE
