@@ -1,3 +1,6 @@
+
+//Plan for ultrasonic sensor. not used
+
 #include "msp.h"
 #include <stdint.h>
 
