@@ -143,6 +143,7 @@ void PORT2_IRQHandler()
     }
 }
 
+
 void TA0_0_IRQHandler(void)
 {
     //    Interrupt gets triggered for every clock cycle in SMCLK Mode counting number of pulses
