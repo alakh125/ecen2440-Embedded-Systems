@@ -1,4 +1,7 @@
 //Code Leveraged off of Chandra Kiran Saladi
+// Edited by Project 4
+
+
 #include "msp.h"
 #include <stdint.h>
 
@@ -33,11 +36,11 @@ int main(void)
     // Configure UART pins
      P1->SEL0 |= BIT2 | BIT3;                // set 2-UART pin as secondary function
 
-//OUR CODE
+    //OUR CODE
     P2->DIR &= ~BIT7;
     P2->REN |= BIT7;
     P2->OUT &= ~BIT7;
-//OUR CODE
+    //OUR CODE
     P2->IFG = 0;
     P2->IE |= BIT7;
     P2->IES &= ~BIT7;
