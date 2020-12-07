@@ -66,9 +66,9 @@ int main(void)
 
 
     /*              TIMER A0            */
-    TIMER_A0->CCTL[0]= TIMER_A_CCTLN_CCIE;       // CCR0 interrupt enabled
-    TIMER_A0->CCR[0] = 1000;                 // 1ms at 1mhz
-    TIMER_A0->CTL = TIMER_A_CTL_TASSEL_2 | TIMER_A_CTL_MC__UP | TIMER_A_CTL_CLR;
+    TIMER_A1->CCTL[0]= TIMER_A_CCTLN_CCIE;       // CCR0 interrupt enabled
+    TIMER_A1->CCR[0] = 1000;                 // 1ms at 1mhz
+    TIMER_A1->CTL = TIMER_A_CTL_TASSEL_2 | TIMER_A_CTL_MC__UP | TIMER_A_CTL_CLR;
 
     __enable_irq();
     NVIC->ISER[1] = 1 << ((PORT2_IRQn) & 31);       // Assign interrupts to the NVIC vector 
@@ -133,13 +133,13 @@ void PORT2_IRQHandler()
         if(!(P2->IES & BIT7)) // is this the rising edge?
         {
 
-            TIMER_A0->CTL |= TIMER_A_CTL_CLR;   // clears timer A
+            TIMER_A1->CTL |= TIMER_A_CTL_CLR;   // clears timer A
             miliseconds = 0;
             P2->IES |=  BIT7;  //falling edge
         }
         else
         {
-            sensor = (long)miliseconds*1000 + (long)TIMER_A0->R;    //calculating ECHO length
+            sensor = (long)miliseconds*1000 + (long)TIMER_A1->R;    //calculating ECHO length
 
             P2->IES &=  ~BIT7;  //falling edge
 
@@ -153,6 +153,6 @@ void TA0_0_IRQHandler(void)
 {
     //    Interrupt gets triggered for every clock cycle in SMCLK Mode counting number of pulses
     miliseconds++;
-    TIMER_A0->CCTL[0] &= ~TIMER_A_CCTLN_CCIFG;
+    TIMER_A1->CCTL[0] &= ~TIMER_A_CCTLN_CCIFG;
 }
 //CHANDRA'S CODE
