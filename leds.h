@@ -1,15 +1,17 @@
 #ifndef LEDS_H_
 #define LEDS_H_
-
+// Created by Team Spider Roomba
+ // Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
 #include "msp.h"
 
-void config_LEDs(void);
 
-void random_LEDs(void);
+void config_LEDs(void); // configure LEDs for function
 
-void disable_LEDs(void);
+void random_LEDs(void); // random LED mode
 
-void autonomous_LEDs(void);
+void disable_LEDs(void); //disable  LEDs for off mode
+
+void autonomous_LEDs(int obstacle); //LED state for autonomous mdoe indication
 
 
 #endif
