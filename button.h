@@ -1,8 +1,8 @@
 /*
  * button.h
+ * Created by Team Spider Roomba
+ * Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
  */
-// Created by Team Spider Roomba
- // Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
 
 #ifndef BUTTON_H_
 #define BUTTON_H_

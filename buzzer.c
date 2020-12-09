@@ -1,15 +1,19 @@
+/*
+ * buzzer.c
+ * Created by Team Spider Roomba
+ * Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
+ */
+
 #include "buzzer.h"
 #include "stdlib.h"
 #include "stdio.h"
- // Created by Team Spider Roomba
- // Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
 
 
 void config_speaker(void) {
   P2 ->DIR |= BIT4; //set as output
   P2 ->OUT |= BIT4; //set state for pin 2.4
-  P2 ->SEL0 |= BIT4; //allow timerA to control pwm
-  P2 ->SEL1 &= ~BIT4; //allow timerA to control pwm
+  // P2 ->SEL0 |= BIT4; //allow timerA to control pwm
+  // P2 ->SEL1 &= ~BIT4; //allow timerA to control pwm
 }
 
 void speaker_off(void) {
@@ -22,13 +26,11 @@ void speaker_on(void) {
 
 void speaker_random(void) // randomly activate speaker using rand() and toggling of timerA control of pin 2.4
 { //basically run a random check, round up toward activating the speaker off a random chance, if below 0.5 then turn off.
-  P1->OUT &= ~BIT0;
   int randSPEAKER = rand() % 10;
   if(randSPEAKER >= 5) {
     P2->SEL0 |= BIT4;
   }
-  else
-  {
+  else{
     P2->SEL0 &= ~BIT4;
   }
 }

@@ -1,7 +1,12 @@
+/*
+ * leds.h
+ * Created by Team Spider Roomba
+ * Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
+ */
+
 #ifndef LEDS_H_
 #define LEDS_H_
-// Created by Team Spider Roomba
- // Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
+
 #include "msp.h"
 
 

@@ -1,6 +1,7 @@
 /*
- * Author: Alakh Patel
- * Last Edit: 12/4/2020
+ * servo.c
+ * Created by Team Spider Roomba
+ * Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
  */
 #include "servo.h"
 #include "stdlib.h"

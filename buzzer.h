@@ -1,10 +1,13 @@
+/*
+ * buzzer.h
+ * Created by Team Spider Roomba
+ * Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
+ */
+
 #ifndef BUZZER_H_
 #define BUZZER_H_
 
 #include "msp.h"
-
-// Created by Team Spider Roomba
- // Cyrus Sowdaey, Alakh Patel, Sonal Tamrakar, Nick Evans
 
 void config_speaker(void); //configure speaker for use
 
