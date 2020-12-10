@@ -20,9 +20,11 @@ int state = 0; //declare state, the state for determining on/off
 int state2 = 0; // declare second state, determining mode to be autonomous or dance
 volatile int distance1 = 0;
 
+//returns the on/off state
 int fstate(void) {
   return state;
 }
+//returns the autonomous/dance state
 int fstate2(void) {
   return state2;
 }

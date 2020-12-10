@@ -12,8 +12,6 @@
 void config_speaker(void) {
   P2 ->DIR |= BIT4; //set as output
   P2 ->OUT |= BIT4; //set state for pin 2.4
-  // P2 ->SEL0 |= BIT4; //allow timerA to control pwm
-  // P2 ->SEL1 &= ~BIT4; //allow timerA to control pwm
 }
 
 void speaker_off(void) {

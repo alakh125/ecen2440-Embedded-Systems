@@ -25,8 +25,8 @@ void standing(void);
 //The following functions were written by the teams
 void move_forward(void);
 void move_backward(void);
-void turn_left(void);
 void turn_right(void);
+void turn_left(void);
 void random_movement(void);
 
 #endif

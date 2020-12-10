@@ -14,7 +14,7 @@ void config_LEDs(void)
 
   P2->DIR |= BIT0; //define onboard LED 2.0 as output
   P2->DIR |= BIT1; //define onboard LED 2.1 as output
-  P2->DIR |= BIT2; //define onboard LED 2.1 as output
+  P2->DIR |= BIT2; //define onboard LED 2.2 as output
 
   P1->OUT |= BIT0; //set default state
   P2->OUT |= BIT0; //set default state

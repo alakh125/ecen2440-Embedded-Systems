@@ -8,7 +8,8 @@
 
 #include "button.h"
 
-//Configure B_button(void) 
+//Configure Button 1.1
+void config_button(void) 
 {
   //set up Button Interrupt
   P1->DIR &= ~BIT1;            // Set as Input

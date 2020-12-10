@@ -26,9 +26,9 @@ void config_usa(void) {
   P2->DIR &= ~BIT7;            // P2.7 as output
   P2->REN |= BIT7;            // P2.7 pull down enabled
   P2->OUT &= ~BIT7;            // P2.7 initial output Low
-  P2->IFG = 0;                 //Set interrupt flag to 0
-  P2->IE |= BIT7;               // Port 2.7 Interrupt enable
-  P2->IES &= ~BIT7;             // Port 2.7 Interrupt edge select
+  P2->IFG = 0;
+  P2->IE |= BIT7;
+  P2->IES &= ~BIT7;
 
   TIMER_A0->CCTL[0]= TIMER_A_CCTLN_CCIE;       // CCR0 interrupt enabled
   TIMER_A0->CCR[0] = 1000-1;                   // 1ms at 1mhz
@@ -90,6 +90,6 @@ void TA0_0_IRQHandler(void)
     A = 1;
     P2 -> OUT &= ~BIT4;
   }
-  TIMER_A0->CCTL[0] &= ~TIMER_A_CCTLN_CCIFG; //Clear the capture/compare interrupt flag
+  TIMER_A0->CCTL[0] &= ~TIMER_A_CCTLN_CCIFG;
 }
 
